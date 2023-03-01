@@ -12,6 +12,7 @@ import SceneSave from "./scene-save";
 import AlarmSave from '../alarm/save';
 import AutoHide from '@/pages/analysis/components/Hide/autoHide';
 import encodeQueryParam from '@/utils/encodeParam';
+import proxy from "../../../../../../config/proxy";
 
 interface Props extends FormComponentProps {
     device: any
@@ -156,7 +157,7 @@ const RuleEngine: React.FC<Props> = props => {
                                                         type="edit"
                                                         onClick={() => {
                                                             if (item.modelType === 'node-red') {
-                                                                window.open(`/jetlinks/rule-editor/index.html?edgeDeviceId=${props.device.id}#flow/${item.id}`)
+                                                                window.open(proxy.dev["/jetlinks"].nodeRed + `/red/#flow/${item.modelId}`)
                                                             } else if (item.modelType === 'rule-scene') {
                                                                 setSceneData(item);
                                                                 setSceneSaveVisible(true);

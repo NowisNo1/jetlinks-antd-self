@@ -20,6 +20,7 @@ import AutoHide from "@/pages/device/location/info/autoHide";
 import AlarmSave from "@/pages/device/alarm/save/index";
 import SceneSave from '../scene/save';
 import {response} from "express";
+import proxy from "../../../../config/proxy";
 
 /**
  * @author Luo
@@ -386,9 +387,9 @@ const RuleInstanceList: React.FC<Props> = props => {
                           <Icon
                             type="edit"
                             onClick={() => {
-                              console.log(item)
+                              console.log(item);
                               if (item.modelType === 'node-red') {
-                                window.open(`/jetlinks/rule-editor/index.html#flow/${item.id}`)
+                                window.open(proxy.dev["/jetlinks"].nodeRed + `red/#flow/${item.modelId}`)
                               } else if (item.modelType === 'sql_rule') {
                                 try {
                                   let data = JSON.parse(item.modelMeta);

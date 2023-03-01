@@ -6,7 +6,7 @@
  * https://pro.ant.design/docs/deploy
  */
 
- export default {
+export default {
   dev: {
     '/jetlinks': {
       // target: 'http://192.168.33.222:8844/',
@@ -19,6 +19,12 @@
       // ws: 'ws://192.168.32.8:8848/',
       ws: 'ws://demo.jetlinks.cn/jetlinks',
       //target: 'http://demo.jetlinks.cn/jetlinks',
+      /**
+       * @author Luo
+       * @createTime 2023-03-01
+       * @comment 设定node-red启动端口
+       */
+      nodeRed: "http://127.0.0.1:8001/",
       changeOrigin: true,
       pathRewrite: { '^/jetlinks': '' },
     },

@@ -154,7 +154,7 @@ const request = extend({
 
 request.interceptors.request.use((url, options) => ({
   // url: url.replace('jetlinks', 'mock'),//使用mock数据
-  // url: 'http://localhost:8848' + url.replace('/jetlinks', ''),
+  url: 'http://localhost:8848' + url.replace('/jetlinks', ''),
   // url: 'http://2.jetlinks.org:9010' + url.replace('/jetlinks', ''),
   options: {
     ...options,

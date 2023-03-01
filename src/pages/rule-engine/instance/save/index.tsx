@@ -27,6 +27,7 @@ const Save = (props: Props) => {
       //   fileValue.modelType = props.data.modelType;
       //   fileValue.modelMeta = props.data.modelMeta;
       // }
+      fileValue.modelVersion = 1;
       fileValue.modelType = "node-red";
       if (props.data?.modelType) {
         fileValue.modelType = props.data.modelType;
