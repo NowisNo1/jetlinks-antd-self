@@ -13,7 +13,6 @@ interface Props extends FormComponentProps {
   data?: Partial<RuleInstanceItem>
   close: Function
 }
-
 const Save = (props: Props) => {
   const {form, form: {getFieldDecorator}} = props;
   const save = () => {
@@ -49,14 +48,26 @@ const Save = (props: Props) => {
         }
       })
      })
+
   };
+  const custom = () =>{
+    var params = {
+      "path": "/flow",
+      "label": "test"
+    }
+    apis.ruleInstance.mycustom("792babcca3be2f29", params).then((res) => {
+      console.log(res)
+    })
+  };
+  // console.log(custom());
   return (
     <Modal
       visible
       title="新建规则实例"
       onCancel={() => props.close()}
       onOk={() => {
-        save()
+        // save();
+        custom();
       }}
     >
       <Form labelCol={{span: 4}} wrapperCol={{span: 20}}>

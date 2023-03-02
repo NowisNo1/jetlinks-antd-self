@@ -8,6 +8,7 @@ import { router } from 'umi';
 import { stringify } from 'qs';
 import { getAccessToken } from './authority';
 import { getPageQuery } from './utils';
+import {options} from "video.js";
 
 // const codeMessage = {
 //   200: '服务器成功返回请求的数据。',
@@ -149,16 +150,17 @@ const errorHandler = (error: { response: Response }): Response | undefined => {
  */
 const request = extend({
   errorHandler, // 默认错误处理
-  credentials: 'include', // 默认请求是否带上cookie
+  credentials: 'include', // 默认请求是否带上 cookie
 });
 
 request.interceptors.request.use((url, options) => ({
   // url: url.replace('jetlinks', 'mock'),//使用mock数据
-  url: 'http://localhost:8848' + url.replace('/jetlinks', ''),
+  url: url.slice(0, 4) == "http" ? url : 'http://localhost:8848' + url.replace('/jetlinks', ''),
   // url: 'http://2.jetlinks.org:9010' + url.replace('/jetlinks', ''),
   options: {
     ...options,
     headers: {
+
       'X-Access-Token': getAccessToken(),
     },
     interceptors: true,

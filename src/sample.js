@@ -38,6 +38,23 @@ app.use(settings.httpAdminRoot, RED.httpAdmin);
 // Serve the http nodes UI from /api
 app.use(settings.httpNodeRoot, RED.httpNode);
 
+app.use(settings.httpAdminMiddleware = function(req, res, next) {
+  console.log(">>>>?")
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:8000");
+  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Access-Token, Content-Type, Authorization, Content-Length, X-Requested-With');
+  res.setHeader("Content-Security-Policy", "frame-ancestors 'none'");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("X-XSS-Protection", "1; mode=block")
+  res.setHeader("Access-Control-Allow-Credentials", "true")
+  res.setHeader("Strict-Transport-Security", "max-age=31536000")
+
+  if(req.method == "OPTIONS" || req.method == "options"){
+    res.send(200);
+  }else {
+    next();
+  }
+});
 server.listen(8001);
 
 setTimeout(
@@ -47,7 +64,7 @@ setTimeout(
     });
   },
   2000
-)
+);
 
 
 

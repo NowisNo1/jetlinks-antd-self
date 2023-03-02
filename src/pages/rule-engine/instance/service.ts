@@ -108,8 +108,24 @@ export async function create(params: any) {
     method: 'POST',
     data: params
   });
+
   // return request(`/jetlinks/rule-engine/flow/_create`, {
   //   method: 'POST',
   //   data: params
   // });
+}
+
+export async function mycustom(id: String, params: any) {
+  const opts = {
+    "nodes": [],
+    "info": params.info,
+    "disabled": false,
+    "env": [],
+    "label": params.label
+  };
+
+  return request(`http://127.0.0.1:8001/red/flow`, {
+    method: 'POST',
+    data: opts
+  })
 }
